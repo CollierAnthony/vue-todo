@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "id": "3",
+      "text": "Food shopping",
+      "day": "March 7th at 2:00pm",
+      "reminder": true
+    },
+    {
+      "text": "Bday ✌!!",
+      "day": "16/11/2021",
+      "reminder": true,
+      "id": "_bO8Yra"
+    },
+    {
+      "text": "Watch this",
+      "day": "https://www.youtube.com/watch?v=mK7lDooAGJw",
+      "reminder": false,
+      "id": "n0Px5aE"
+    },
+    {
+      "text": "Code almost everyday",
+      "day": "Important",
+      "reminder": true,
+      "id": "yae2IFA"
+    }
+  ]
+}
