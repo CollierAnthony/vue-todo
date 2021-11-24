@@ -2,11 +2,19 @@ const state = {
     tasks: []
 };
 
-const getters = {};
-const actions = {
-
+const getters = {
+    allTasks: (state) => state.tasks,
 };
-const mutations = {};
+const actions = {
+    async fetchTasks({commit}){
+        const res = await fetch("api/tasks");
+        const data = await res.json();
+        commit('setTasks', data);
+    },
+};
+const mutations = {
+    setTasks: (state, tasks) => state.tasks = tasks
+};
 
 export default {
     state,

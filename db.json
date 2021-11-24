@@ -23,6 +23,18 @@
       "day": "Can wait",
       "reminder": false,
       "id": "I5Gc2Il"
+    },
+    {
+      "text": "test",
+      "day": "test",
+      "reminder": true,
+      "id": "H5NjK7M"
+    },
+    {
+      "text": "azef",
+      "day": "azef",
+      "reminder": true,
+      "id": "vbWcRZf"
     }
   ]
 }
