@@ -23,6 +23,14 @@ const actions = {
         commit('updateTask', data);
 
     },
+    async deleteTask({commit}, id){
+        if(confirm('Are you sure ?')) {
+            const res = await fetch(`api/tasks/${id}`, {
+                method: "DELETE"
+            });
+            commit('deleteTask', id);
+        }
+    }
     // async addTask({commit},task){
     //     const res = await fetch("api/tasks", {
     //         method: 'POST',
@@ -34,6 +42,7 @@ const actions = {
     //     const data = await res.json();
     //     this.tasks = [...this.tasks, data];
     // },
+
 };
 const mutations = {
     setTasks: (state, tasks) => state.tasks = tasks,
@@ -43,6 +52,7 @@ const mutations = {
             state.tasks.splice(index, 1, updTask);
         }
     },
+    deleteTask: (state, id) => state.tasks = state.tasks.filter(todo => todo.id !== id )
 };
 
 export default {
