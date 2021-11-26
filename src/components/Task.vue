@@ -1,9 +1,9 @@
 <template>
-    <div @dblclick="$emit('toggle-reminder', task.id)" :class="[task.reminder ? 'reminder' : '', 'task']">
+    <div @dblclick="onDblClick(task)" :class="[task.reminder ? 'reminder' : '', 'task']">
         <h3>{{ task.text }}
             <div>
                 <i @click="toggleModifyTask" class="fas fa-pen"></i>
-                <i @click="$emit('delete-task', task.id)" class="fas fa-times"></i>
+                <i class="fas fa-times"></i>
             </div>
         </h3>
         <p>{{ task.day }}</p>
@@ -14,6 +14,7 @@
 </template>
 <script>
     import ModifyTask from "./ModifyTask";
+    import {mapActions} from 'vuex';
 
     export default{
         name: 'Task',
@@ -29,17 +30,24 @@
             }
         },
         methods: {
+            ...mapActions(['updateTask']),
+            onDblClick(task){
+                const updTask = {
+                    id: task.id,
+                    text: task.text,
+                    day: task.day,
+                    reminder: !task.reminder
+                }
+                this.updateTask(updTask);
+            },
             toggleModifyTask(){
                 this.showModifyTask = !this.showModifyTask;
             },
-            modifyTask(modifiedTask){
-                this.$emit('modify-task', modifiedTask);
-            }
         },
     }
 </script>
 
-<style scope>
+<style scoped >
     .fa-times {
         color: red;
     }

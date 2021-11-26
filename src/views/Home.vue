@@ -1,29 +1,23 @@
 <template>
-<!--    <AddTask v-show="showAddTask" @add-task="addTask" />-->
+    <AddTask v-show="showAddTask" @add-task="addTask" />
 <!--    <Tasks @modify-task="modifyTask"  @toggle-reminder="toggleReminder" @delete-task="deleteTask" :tasks="tasks" />-->
-<!--    <Tasks />-->
-    <div v-for="task in allTasks">
-        <p>{{task.text}}</p>
-    </div>
-    <div>
-        <h1>Hallo</h1>
-    </div>
+    <Tasks />
 </template>
 
 <script>
-    // import Tasks from '../components/Tasks';
-    // import AddTask from '../components/AddTask';
+    import Tasks from '../components/Tasks';
+    import AddTask from '../components/AddTask';
     import { mapGetters, mapActions } from 'vuex';
 
     export default{
         name:'Home',
-        // components: {
-        //     Tasks,
-        //     AddTask
-        // },
-        // props:{
-        //   showAddTask: Boolean
-        // },
+        components: {
+            Tasks,
+            AddTask
+        },
+        props:{
+          showAddTask: Boolean
+        },
         //
         methods:{
             ...mapActions(['fetchTasks']),
@@ -65,22 +59,8 @@
             //     const data = await res.json();
             //     this.tasks = this.tasks.map((task) => task.id === id ? { ...task, reminder: data.reminder } : task);
             // },
-            // async addTask(task){
-            //     const res = await fetch("api/tasks", {
-            //         method: 'POST',
-            //         headers:{
-            //             'Content-type': 'application/json',
-            //         },
-            //         body: JSON.stringify(task)
-            //     });
-            //     const data = await res.json();
-            //     this.tasks = [...this.tasks, data];
-            // },
-            // async fetchTask(id){
-            //     const res = await fetch("api/tasks/" + id);
-            //     const data = await res.json();
-            //     return data;
-            // }
+
+
         },
         computed: mapGetters(['allTasks']),
         created(){
