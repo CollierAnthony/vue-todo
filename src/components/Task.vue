@@ -34,9 +34,6 @@
         props: {
             task: Object
         },
-        components:{
-            ModifyTask
-        },
         data() {
             return{
                 showModifyTask: false,
