@@ -8,12 +8,25 @@
         </h3>
         <p>{{ task.day }}</p>
         <div v-show="showModifyTask">
-            <ModifyTask :task="task" @modify-task="modifyTask" />
+            <form @submit.prevent="modifyTask(task)"  >
+                <div class="d-flex justify-between">
+                    <div class="d-inline-block">
+                        <label> Change title :</label><br>
+                        <input type="text" v-model="newText" name="newTitle" placeholder="Modify Title" />
+                    </div>
+                    <div class="d-inline-block">
+                        <label> Change Day :</label><br>
+                        <input type="text" v-model="newDay" name="newDay" placeholder="Modify Day & Time" />
+                    </div>
+                </div>
+
+                <input type="submit" value="Modify task" class="btn btn-block" />
+            </form>
         </div>
     </div>
 </template>
+
 <script>
-    import ModifyTask from "./ModifyTask";
     import {mapActions} from 'vuex';
 
     export default{
@@ -27,6 +40,8 @@
         data() {
             return{
                 showModifyTask: false,
+                newText: this.task.text,
+                newDay: this.task.day,
             }
         },
         methods: {
@@ -43,6 +58,20 @@
             toggleModifyTask(){
                 this.showModifyTask = !this.showModifyTask;
             },
+            modifyTask(task){
+                if(this.newText && this.newDay){
+                    const updTask = {
+                        id: task.id,
+                        text: this.newText,
+                        day: this.newDay,
+                        reminder: task.reminder
+                    }
+                    this.updateTask(updTask);
+                }else{
+                    alert('The two fields are required');
+                    return;
+                }
+            }
         },
     }
 </script>
@@ -68,5 +97,14 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+    .d-flex{
+        display: flex;
+    }
+    .justify-between{
+        justify-content: space-between;
+    }
+    .d-inline-block{
+        display: inline-block;
     }
 </style>

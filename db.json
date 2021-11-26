@@ -9,7 +9,7 @@
     {
       "id": "4kI3dtn",
       "text": "Install and use VueX",
-      "day": "ASAP",
+      "day": "DONE",
       "reminder": true
     },
     {
@@ -22,18 +22,6 @@
       "id": "I5Gc2Il",
       "text": "Use the Oauth2 protocol for authentication",
       "day": "Can wait",
-      "reminder": false
-    },
-    {
-      "id": "H5NjK7M",
-      "text": "test",
-      "day": "test",
-      "reminder": false
-    },
-    {
-      "id": "vbWcRZf",
-      "text": "azef",
-      "day": "azef",
       "reminder": false
     }
   ]
