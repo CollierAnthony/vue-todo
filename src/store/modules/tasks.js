@@ -30,22 +30,23 @@ const actions = {
             });
             commit('deleteTask', id);
         }
-    }
-    // async addTask({commit},task){
-    //     const res = await fetch("api/tasks", {
-    //         method: 'POST',
-    //         headers:{
-    //             'Content-type': 'application/json',
-    //         },
-    //         body: JSON.stringify(task)
-    //     });
-    //     const data = await res.json();
-    //     this.tasks = [...this.tasks, data];
-    // },
+    },
+    async addTask({commit},task){
+        const res = await fetch("api/tasks", {
+            method: 'POST',
+            headers:{
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(task)
+        });
+        const data = await res.json();
+        commit('newTask', data);
+    },
 
 };
 const mutations = {
     setTasks: (state, tasks) => state.tasks = tasks,
+    newTask: (state, task) => state.tasks.push(task),
     updateTask: (state, updTask) =>{
         const index = state.tasks.findIndex(task => task.id === updTask.id);
         if(index !== -1){

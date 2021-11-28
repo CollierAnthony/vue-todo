@@ -23,6 +23,8 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex';
+
     export default {
         name: 'AddTask',
         data() {
@@ -33,6 +35,7 @@
             }
         },
         methods: {
+            ...mapActions(['addTask']),
             onSubmit(e) {
                 e.preventDefault()
                 if (!this.text) {
@@ -40,12 +43,11 @@
                     return
                 }
                 const newTask = {
-                    // id: Math.floor(Math.random() * 100000),
                     text: this.text,
                     day: this.day,
                     reminder: this.reminder,
                 }
-                this.$emit('add-task', newTask)
+                this.addTask(newTask)
                 this.text = ''
                 this.day = ''
                 this.reminder = false
