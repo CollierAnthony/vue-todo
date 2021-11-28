@@ -23,6 +23,12 @@
       "text": "Use the Oauth2 protocol for authentication",
       "day": "Can wait",
       "reminder": false
+    },
+    {
+      "text": "fullstack with oauth",
+      "day": "https://www.youtube.com/watch?v=SBvmnHTQIPY",
+      "reminder": true,
+      "id": "Fo4foQE"
     }
   ]
 }
