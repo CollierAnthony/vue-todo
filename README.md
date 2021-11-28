@@ -5,14 +5,22 @@
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## Database setup
+### MongoDB start (You will need docker)
+```
+docker compose up -d
+```
+
+## Development
+### Start the Vue client
 ```
 npm run serve
 ```
 
-### Fake backend
+### Start the Express.js server
 ```
-npm run backend
+cd server
+npm run startServer
 ```
 
 ### Compiles and minifies for production
