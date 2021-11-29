@@ -11,9 +11,10 @@ router.get('/', async (req,res) => {
         res.status(500).json({message: err.message});
     }
 });
-//Get one task
-router.get('/:id', (req,res) =>{
-    res.send(req.params.id);
+
+// Get one task
+router.get('/:id', getTask,(req,res) =>{
+    res.json(res.task);
 });
 
 //Creating one task
@@ -32,13 +33,46 @@ router.post('/', async (req,res) =>{
 });
 
 //Updating one task
-router.patch('/:id', (req,res) =>{
+router.put('/:id', getTask, async (req,res) =>{
+    if(req.body.text != null){
+        res.task.text = req.body.text;
+    }
+    if(req.body.day != null){
+        res.task.day = req.body.day;
+    }
+    if(req.body.reminder != null){
+        res.task.reminder = req.body.reminder;
+    }
+    try{
+        const updatedTask = await res.task.save();
+    }catch(err){
+        res.status(400).json({message: err.message});
+    }
 
 });
 
 //deleting one task
-router.delete('/:id', (req,res) =>{
-
+router.delete('/:id', getTask, async (req,res) =>{
+    try{
+        await res.task.remove();
+        res.json({message: "Deleted task"});
+    }catch(err){
+        res.status(500).json({message: err.message});
+    }
 });
+
+async function getTask(req, res, next){
+    let task;
+    try{
+        task = await Task.findById(req.params.id);
+        if(task == null){
+            return res.send(400).json({message: "Cannot find task"});
+        }
+    }catch(err){
+        return res.send(500).json({message: err.message});
+    }
+    res.task = task;
+    next();
+}
 
 module.exports = router;

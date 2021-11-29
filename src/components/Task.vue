@@ -3,7 +3,7 @@
         <h3>{{ task.text }}
             <div>
                 <i @click="toggleModifyTask" class="fas fa-pen"></i>
-                <i @click="deleteTask(task.id)" class="fas fa-times"></i>
+                <i @click="deleteTask(task._id)" class="fas fa-times"></i>
             </div>
         </h3>
         <p>{{ task.day }}</p>
@@ -45,7 +45,7 @@
             ...mapActions(['updateTask', 'deleteTask']),
             onDblClick(task){
                 const updTask = {
-                    id: task.id,
+                    _id: task._id,
                     text: task.text,
                     day: task.day,
                     reminder: !task.reminder
@@ -58,7 +58,7 @@
             modifyTask(task){
                 if(this.newText && this.newDay){
                     const updTask = {
-                        id: task.id,
+                        _id: task._id,
                         text: this.newText,
                         day: this.newDay,
                         reminder: task.reminder

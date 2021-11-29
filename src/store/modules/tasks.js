@@ -12,7 +12,7 @@ const actions = {
         commit('setTasks', data);
     },
     async updateTask({commit}, updTask){
-        const res = await fetch("api/tasks/" + updTask.id, {
+        const res = await fetch("http://localhost:3000/tasks/" + updTask._id, {
             method: "PUT",
             headers:{
                 'Content-type': 'application/json',
@@ -25,14 +25,14 @@ const actions = {
     },
     async deleteTask({commit}, id){
         if(confirm('Are you sure ?')) {
-            const res = await fetch(`api/tasks/${id}`, {
+            const res = await fetch(`http://localhost:3000/tasks/${id}`, {
                 method: "DELETE"
             });
             commit('deleteTask', id);
         }
     },
     async addTask({commit},task){
-        const res = await fetch("api/tasks", {
+        const res = await fetch("http://localhost:3000/tasks", {
             method: 'POST',
             headers:{
                 'Content-type': 'application/json',
@@ -48,12 +48,12 @@ const mutations = {
     setTasks: (state, tasks) => state.tasks = tasks,
     newTask: (state, task) => state.tasks.push(task),
     updateTask: (state, updTask) =>{
-        const index = state.tasks.findIndex(task => task.id === updTask.id);
+        const index = state.tasks.findIndex(task => task._id === updTask._id);
         if(index !== -1){
             state.tasks.splice(index, 1, updTask);
         }
     },
-    deleteTask: (state, id) => state.tasks = state.tasks.filter(todo => todo.id !== id )
+    deleteTask: (state, _id) => state.tasks = state.tasks.filter(todo => todo._id !== _id )
 };
 
 export default {
