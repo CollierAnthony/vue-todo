@@ -13,7 +13,7 @@ const actions = {
     },
     async updateTask({commit}, updTask){
         const res = await fetch("http://localhost:3000/tasks/" + updTask._id, {
-            method: "PUT",
+            method: "PATCH",
             headers:{
                 'Content-type': 'application/json',
             },
@@ -23,12 +23,12 @@ const actions = {
         commit('updateTask', data);
 
     },
-    async deleteTask({commit}, id){
+    async deleteTask({commit}, _id){
         if(confirm('Are you sure ?')) {
-            const res = await fetch(`http://localhost:3000/tasks/${id}`, {
+            const res = await fetch(`http://localhost:3000/tasks/${_id}`, {
                 method: "DELETE"
             });
-            commit('deleteTask', id);
+            commit('deleteTask',_id);
         }
     },
     async addTask({commit},task){

@@ -33,7 +33,7 @@ router.post('/', async (req,res) =>{
 });
 
 //Updating one task
-router.put('/:id', getTask, async (req,res) =>{
+router.patch('/:id', getTask, async (req,res) =>{
     if(req.body.text != null){
         res.task.text = req.body.text;
     }
@@ -45,6 +45,7 @@ router.put('/:id', getTask, async (req,res) =>{
     }
     try{
         const updatedTask = await res.task.save();
+        res.json(updatedTask);
     }catch(err){
         res.status(400).json({message: err.message});
     }
