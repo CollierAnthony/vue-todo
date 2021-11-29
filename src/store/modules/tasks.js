@@ -7,7 +7,7 @@ const getters = {
 };
 const actions = {
     async fetchTasks({commit}){
-        const res = await fetch("api/tasks");
+        const res = await fetch("http://localhost:3000/tasks");
         const data = await res.json();
         commit('setTasks', data);
     },

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Task = require('../models/task');
 
-//Getting all tasks
+//Get all tasks
 router.get('/', async (req,res) => {
     try {
         const tasks = await Task.find();
@@ -11,7 +11,7 @@ router.get('/', async (req,res) => {
         res.status(500).json({message: err.message});
     }
 });
-//Getting one task ??
+//Get one task
 router.get('/:id', (req,res) =>{
     res.send(req.params.id);
 });
