@@ -3,6 +3,9 @@
 ## Project setup
 ```
 npm install
+cd server
+npm install
+cd ..
 ```
 
 ## Database setup
