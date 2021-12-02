@@ -1,5 +1,5 @@
 <template>
-    <form @submit="onSubmit" class="add-form">
+    <form @submit.prevent="onSubmit" class="add-form">
         <div class="form-control">
             <label>Task</label>
             <input type="text" v-model="text" name="text" placeholder="Add Task" />
@@ -36,8 +36,7 @@
         },
         methods: {
             ...mapActions(['addTask']),
-            onSubmit(e) {
-                e.preventDefault()
+            onSubmit() {
                 if (!this.text) {
                     alert('Please add a task')
                     return
@@ -56,7 +55,7 @@
     }
 </script>
 
-<style scoped>
+<style>
     .add-form {
         margin-bottom: 40px;
     }
