@@ -15,6 +15,9 @@ app.use(express.json());
 const tasksRouter = require('./routes/tasks');
 app.use('/tasks', tasksRouter);
 
+const usersRouter = require('./routes/users');
+app.use('/users', usersRouter);
+
 app.listen(3000, () => console.log('Server Started'));
 
 // https://www.youtube.com/watch?v=fgTGADljAeg

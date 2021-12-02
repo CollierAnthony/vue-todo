@@ -4,7 +4,7 @@ const state = {
 const getters = {};
 const actions = {
     async Signup({commit}, user){
-        const res = await fetch("http://localhost:3000/signup", {
+        const res = await fetch("http://localhost:3000/users", {
             method: "POST",
             headers:{
                 'Content-type': 'application/json',
@@ -13,7 +13,6 @@ const actions = {
         });
         const data = await res.json();
         commit('newUser', data);
-
     }
 };
 const mutations = {

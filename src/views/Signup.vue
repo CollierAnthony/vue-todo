@@ -28,7 +28,7 @@
         name: "Signup",
         data(){
             return{
-                success: true,
+                success: false,
                 username:'',
                 mail:'',
                 password:''
@@ -48,7 +48,7 @@
                     password: this.password,
                 }
                 this.Signup(newUser);
-
+                this.success = true;
             }
         }
     }
