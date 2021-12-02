@@ -16,9 +16,9 @@ router.get('/', async (req,res) => {
 //Creating one user
 router.post('/', async (req,res) =>{
     const user = new User({
-        username: "Anthony",
-        mail: "anthony@yopmail.com",
-        password: "azerty"
+        username: req.body.username,
+        mail: req.body.mail,
+        password: req.body.password
     });
     try {
         const newUser = await user.save();

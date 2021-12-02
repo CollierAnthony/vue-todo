@@ -35,7 +35,7 @@
             }
         },
         methods: {
-            ...mapActions['Signup'],
+            ...mapActions(['Signup']),
             onSubmit(){
                 // TODO : better validation
                 if(!this.username || !this.mail || !this.password){
