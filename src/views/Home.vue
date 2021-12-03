@@ -22,7 +22,6 @@
         //
         methods:{
             ...mapActions(['fetchTasks']),
-
         },
         computed: mapGetters(['allTasks']),
         created(){

@@ -3,7 +3,7 @@
         <form @submit.prevent="onSubmit" v-show="!success">
             <div class="form-control">
                 <label>Username:</label>
-                <input type="text" v-model="username" placeholder="Pseudo">
+                <input type="text" v-model="username" placeholder="Username">
             </div>
             <div class="form-control">
                 <label>Mail:</label>
