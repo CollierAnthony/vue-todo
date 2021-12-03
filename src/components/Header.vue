@@ -5,6 +5,9 @@
             <router-link to="/signup" v-show="SignupPage">sign up</router-link>
             <router-link to="/login" v-show="LoginPage">Login</router-link>
         </nav>
+        <nav v-if="getUser.isLoggedIn">
+            <button @click="Logout" >Logout</button>
+        </nav>
     </div>
     <header>
         <h1>{{ title }}</h1>
@@ -14,7 +17,7 @@
 
 <script>
     import Button from './Button'
-    import {mapGetters} from 'vuex';
+    import {mapGetters, mapActions} from 'vuex';
 
     export default{
         name: 'Header',
@@ -47,8 +50,10 @@
                 }
                 return true;
             },
+        },
+        methods:{
+            ...mapActions(['Logout'])
         }
-
     }
 </script>
 

@@ -31,10 +31,14 @@ const actions = {
         });
         const data = await res.json();
         commit('LoggedIn', user);
+    },
+    async Logout({commit}){
+        commit('LoggedOut');
     }
 };
 const mutations = {
-    LoggedIn: (state, user) => state.user = {isLoggedIn: true, data: user}
+    LoggedIn: (state, user) => state.user = {isLoggedIn: true, data: user},
+    LoggedOut: (state) => state.user = {isLoggedIn: false, data: {}}
 };
 
 export default {
