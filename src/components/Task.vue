@@ -1,7 +1,7 @@
 <template>
     <div @dblclick="onDblClick(task)" :class="[task.reminder ? 'reminder' : '', 'task']">
         <h3>{{ task.text }}
-            <div>
+            <div v-if="getUser.isLoggedIn" >
                 <i @click="toggleModifyTask" class="fas fa-pen"></i>
                 <i @click="deleteTask(task._id)" class="fas fa-times"></i>
             </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex';
+    import {mapGetters, mapActions} from 'vuex';
 
     export default{
         name: 'Task',
@@ -70,6 +70,11 @@
                 }
             }
         },
+        computed: {
+            ...mapGetters([
+                'getUser',
+            ]),
+        }
     }
 </script>
 
