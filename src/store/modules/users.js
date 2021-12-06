@@ -32,7 +32,11 @@ const actions = {
             body: JSON.stringify(user)
         });
         const data = await res.json();
-        commit('LoggedIn', user);
+        if(data.message){
+            alert(data.message);
+        }else{
+            commit('LoggedIn', data);
+        }
     },
     async Logout({commit}){
         commit('LoggedOut');
