@@ -41,16 +41,23 @@
                 newDay: this.task.day,
             }
         },
+        computed: {
+            ...mapGetters([
+                'getUser',
+            ]),
+        },
         methods: {
             ...mapActions(['updateTask', 'deleteTask']),
             onDblClick(task){
-                const updTask = {
-                    _id: task._id,
-                    text: task.text,
-                    day: task.day,
-                    reminder: !task.reminder
+                if(this.$store.state.users.user.isLoggedIn){
+                    const updTask = {
+                        _id: task._id,
+                        text: task.text,
+                        day: task.day,
+                        reminder: !task.reminder
+                    }
+                    this.updateTask(updTask);
                 }
-                this.updateTask(updTask);
             },
             toggleModifyTask(){
                 this.showModifyTask = !this.showModifyTask;
@@ -69,12 +76,8 @@
                     return;
                 }
             }
-        },
-        computed: {
-            ...mapGetters([
-                'getUser',
-            ]),
         }
+
     }
 </script>
 
