@@ -1,18 +1,20 @@
 <template>
-    <div class="authentication">
-        <h2 v-if="getUser.isLoggedIn">Hello {{ getUser.data.username }}</h2>
-        <nav v-if="!getUser.isLoggedIn">
-            <router-link to="/signup" v-show="SignupPage">sign up</router-link>
-            <router-link to="/login" v-show="LoginPage">Login</router-link>
-        </nav>
-        <nav v-if="getUser.isLoggedIn">
-            <button @click="Logout" >Logout</button>
-        </nav>
-    </div>
-    <header>
-        <h1>{{ title }}</h1>
-        <Button v-show="homePage" v-if="getUser.isLoggedIn" @btn-click="$emit('toggle-add-task')" :text="showAddTask ? 'Close' : 'Add Task' " :color="showAddTask ? 'red' : 'green'"/>
-    </header>
+   <div>
+       <div class="authentication">
+           <h2 v-if="getUser.isLoggedIn">Hello {{ getUser.data.username }}</h2>
+           <nav v-if="!getUser.isLoggedIn">
+               <router-link to="/signup" v-show="SignupPage">sign up</router-link>
+               <router-link to="/login" v-show="LoginPage">Login</router-link>
+           </nav>
+           <nav v-if="getUser.isLoggedIn">
+               <button @click="Logout" >Logout</button>
+           </nav>
+       </div>
+       <header>
+           <h1>{{ title }}</h1>
+           <Button v-show="homePage" v-if="getUser.isLoggedIn" @btn-click="$emit('toggle-add-task')" :text="showAddTask ? 'Close' : 'Add Task' " :color="showAddTask ? 'red' : 'green'"/>
+       </header>
+   </div>
 </template>
 
 <script>
@@ -23,7 +25,7 @@
         name: 'Header',
         props: {
             title: String,
-            showAddTask: Boolean
+            showAddTask: true
         },
         components:{
             Button

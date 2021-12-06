@@ -43,4 +43,13 @@ router.post("/login", async (req, res) => {
     }
 });
 
+//for dev purpose
+router.delete("/deleteAll", async (req, res) =>{
+    try{
+        await User.remove({}, res.status(200).json('Thanos snapped twice') );
+    }catch(err){
+        res.status(500).json(err);
+    }
+});
+
 module.exports = router;
