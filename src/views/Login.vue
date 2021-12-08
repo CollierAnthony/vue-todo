@@ -24,7 +24,6 @@
         name: "Login",
         data(){
             return{
-                // success: false,
                 username:'',
                 password:''
             }
@@ -40,7 +39,6 @@
                     password: this.password,
                 }
                 this.Login(user);
-                // this.success = true;
             }
         }
     }

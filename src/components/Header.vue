@@ -25,7 +25,7 @@
         name: 'Header',
         props: {
             title: String,
-            showAddTask: true
+            showAddTask: Boolean
         },
         components:{
             Button
