@@ -32,6 +32,7 @@ const actions = {
             body: JSON.stringify(user)
         });
         const data = await res.json();
+
         if(data.message){
             alert(data.message);
         }else{

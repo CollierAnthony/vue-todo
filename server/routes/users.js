@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const Bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 //Get all users
 router.get('/', async (req,res) => {
@@ -30,14 +31,19 @@ router.post('/signup', async (req,res) =>{
 
 router.post("/login", async (req, res) => {
     try {
-        const user = await User.findOne({ username: req.body.username }).exec();
+        let user = await User.findOne({ username: req.body.username }).exec();
         if(!user) {
             return res.status(400).send({ message: "The username does not exist" });
         }
         if(!Bcrypt.compareSync(req.body.password, user.password)) {
             return res.status(400).send({ message: "The password is invalid" });
         }
-        res.status(200).json(user);
+
+        const accessToken = await jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET);
+        res.status(200).json({
+            accessToken,
+            user
+        });
     } catch (err) {
         res.status(500).send(err);
     }
