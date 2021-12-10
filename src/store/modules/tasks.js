@@ -6,16 +6,25 @@ const getters = {
     allTasks: (state) => state.tasks,
 };
 const actions = {
-    async fetchTasks({commit}){
-        const res = await fetch("http://localhost:3000/tasks");
+    async fetchTasks({state,commit, rootState}){
+        const res = await fetch("http://localhost:3000/tasks", {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer '+rootState.users.accessToken
+            }
+        });
         const data = await res.json();
+        console.log("data");
+        console.log(data);
         commit('setTasks', data);
     },
-    async updateTask({commit}, updTask){
+    async updateTask({state,commit, rootState}, updTask){
         const res = await fetch("http://localhost:3000/tasks/" + updTask._id, {
             method: "PATCH",
             headers:{
-                'Content-type': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+ rootState.users.accessToken
             },
             body: JSON.stringify(updTask)
         });
@@ -23,20 +32,24 @@ const actions = {
         commit('updateTask', data);
 
     },
-    async deleteTask({commit}, _id){
+    async deleteTask({state,commit, rootState}, _id){
         if(confirm('Are you sure ?')) {
             const res = await fetch(`http://localhost:3000/tasks/${_id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': 'Bearer '+ rootState.users.accessToken
+                }
             });
             commit('deleteTask',_id);
         }
     },
-    async addTask({commit},task){
+    async addTask({state,commit, rootState},task){
         const res = await fetch("http://localhost:3000/tasks", {
             method: 'POST',
             headers:{
                 'Content-type': 'application/json',
-                // 'Authorization': 'Bearer'+
+                'Authorization': 'Bearer '+ rootState.users.accessToken
             },
             body: JSON.stringify(task)
         });

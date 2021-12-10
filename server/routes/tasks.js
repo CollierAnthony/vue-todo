@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Task = require('../models/task');
+const jwt = require("jsonwebtoken");
 
 //Get all tasks
-router.get('/', async (req,res) => {
+router.get('/', authenticateToken, async (req,res) => {
     try {
         const tasks = await Task.find();
         res.json(tasks);
@@ -18,7 +19,7 @@ router.get('/:id', getTask,(req,res) =>{
 });
 
 //Creating one task
-router.post('/', async (req,res) =>{
+router.post('/', authenticateToken, async (req,res) =>{
     const task = new Task({
         text: req.body.text,
         day: req.body.day,
@@ -61,6 +62,22 @@ router.delete('/:id', getTask, async (req,res) =>{
         res.status(500).json({message: err.message});
     }
 });
+
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader.split(' ')[1];
+    if (token == null) {
+        return res.sendStatus(401);
+    }
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) {
+            return res.sendStatus(403);
+        }
+        req.user = user;
+        next();
+    })
+}
 
 async function getTask(req, res, next){
     let task;
