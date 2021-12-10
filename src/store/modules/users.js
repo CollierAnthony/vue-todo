@@ -3,7 +3,7 @@ const state = {
         isLoggedIn: false,
         data: {}
     },
-    accessToken: "blop",
+    accessToken: "",
 
 };
 const getters = {
@@ -36,8 +36,7 @@ const actions = {
             body: JSON.stringify(user)
         });
         const data = await res.json();
-
-        if(data.message){
+        if(res.status !== 200){
             alert(data.message);
         }else{
             commit('LoggedIn', data);

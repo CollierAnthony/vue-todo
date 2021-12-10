@@ -36,6 +36,7 @@ const actions = {
             method: 'POST',
             headers:{
                 'Content-type': 'application/json',
+                // 'Authorization': 'Bearer'+
             },
             body: JSON.stringify(task)
         });

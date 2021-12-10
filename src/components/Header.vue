@@ -1,7 +1,6 @@
 <template>
    <div>
        <div class="authentication">
-
            <h2 v-if="getUser.isLoggedIn">Hello {{ getUser.data.username }}</h2>
            <nav v-if="!getUser.isLoggedIn">
                <router-link to="/signup" v-show="SignupPage">sign up</router-link>
