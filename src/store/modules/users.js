@@ -3,11 +3,15 @@ const state = {
         isLoggedIn: false,
         data: {}
     },
+    accessToken: "blop",
 
 };
 const getters = {
     getUser: (state) => {
         return state.user
+    },
+    getAccessToken: (state) =>{
+        return state.accessToken
     }
 };
 
@@ -44,7 +48,10 @@ const actions = {
     }
 };
 const mutations = {
-    LoggedIn: (state, user) => state.user = {isLoggedIn: true, data: user},
+    LoggedIn(state, data){
+        state.user = {isLoggedIn: true, data: data.user};
+        state.accessToken = data.accessToken;
+        },
     LoggedOut: (state) => state.user = {isLoggedIn: false, data: {}}
 };
 

@@ -38,7 +38,6 @@ router.post("/login", async (req, res) => {
         if(!Bcrypt.compareSync(req.body.password, user.password)) {
             return res.status(400).send({ message: "The password is invalid" });
         }
-
         const accessToken = await jwt.sign({user}, process.env.ACCESS_TOKEN_SECRET);
         res.status(200).json({
             accessToken,
