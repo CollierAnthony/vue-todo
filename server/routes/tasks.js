@@ -84,10 +84,10 @@ async function getTask(req, res, next){
     try{
         task = await Task.findById(req.params.id);
         if(task == null){
-            return res.send(400).json({message: "Cannot find task"});
+            return res.sendStatus(400).json({message: "Cannot find task"});
         }
     }catch(err){
-        return res.send(500).json({message: err.message});
+        return res.sendStatus(500).json({message: err.message});
     }
     res.task = task;
     next();
