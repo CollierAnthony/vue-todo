@@ -7,21 +7,28 @@
       "id": "n0Px5aE"
     },
     {
+      "id": "4kI3dtn",
       "text": "Install and use VueX",
-      "day": "ASAP",
-      "id": "4kI3dtn"
+      "day": "DONE",
+      "reminder": true
     },
     {
+      "id": "Q7nAclU",
       "text": "Get rid of json-server and implement a real backend solution",
       "day": "ASAP",
-      "reminder": false,
-      "id": "Q7nAclU"
+      "reminder": false
     },
     {
+      "id": "I5Gc2Il",
       "text": "Use the Oauth2 protocol for authentication",
       "day": "Can wait",
-      "reminder": false,
-      "id": "I5Gc2Il"
+      "reminder": false
+    },
+    {
+      "text": "fullstack with oauth",
+      "day": "https://www.youtube.com/watch?v=SBvmnHTQIPY",
+      "reminder": true,
+      "id": "Fo4foQE"
     }
   ]
 }
