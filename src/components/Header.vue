@@ -1,5 +1,6 @@
 <template>
    <div>
+       test
        <div class="authentication">
            <h2 v-if="getUser.isLoggedIn">Hello {{ getUser.data.username }}</h2>
            <nav v-if="!getUser.isLoggedIn">
